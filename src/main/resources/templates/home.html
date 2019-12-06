@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <th:block th:replace="fragments/navbar"></th:block>
+    <main class="mt-3">
+        <th:block sec:authorize="hasRole('ROLE_CUSTOMER')">
+            <th:block th:replace="customer/customerPanel"></th:block>
+        </th:block>
+        <th:block sec:authorize="hasRole('ROLE_SELLER')">
+            <th:block th:replace="seller/sellerPanel"></th:block>
+        </th:block>
+    </main>
+    <th:block th:replace="fragments/footer"></th:block>
+</div>
+<script>
+
+</script>
+</body>
+</html>

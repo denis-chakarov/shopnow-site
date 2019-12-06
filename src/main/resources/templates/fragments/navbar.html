@@ -1,0 +1,84 @@
+<th:block>
+    <th:block sec:authorize="isAuthenticated()">
+        <nav class="navbar navbar-expand-lg navbar-light bg-main text-light rounded font-weight-bold">
+            <a class="navbar-brand text-light" th:href="@{/home}">ShopNow</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#userNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse d-flex justify-content-end" id="userNav">
+                <ul class="navbar-nav">
+                    <th:block sec:authorize="hasRole('ROLE_CUSTOMER')">
+                        <li class="nav-item active">
+                            <div class="dropdown">
+                                <a class="nav-link active dropdown-toggle" href="#" role="button" id="cartDropdown"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Cart
+                                </a>
+<!--                            <div class="dropdown-menu" aria-labelledby="cartDropdown">-->
+<!--                                <th:block th:each="item : ${#session.getAttribute('shopping-cart')}" th:object="${item}">-->
+<!--                                    <div class="dropdown-item" th:text="|*{product.product.name} x *{quantity}|"></div>-->
+<!--                                </th:block>-->
+<!--                                <div class="dropdown-divider"></div>-->
+<!--                                <div class="text-center">-->
+<!--                                    <a th:href="@{/cart/details}" class="btn btn-dark">Cart</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            </div>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/orders/my}">My Orders</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/users/edit}">Profile</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/users/support}">Support</a>
+                        </li>
+                    </th:block>
+
+                    <th:block sec:authorize="hasRole('ROLE_SELLER')">
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/seller/create/product}">Create Product</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/seller/all}">My Products</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/seller/profile}">Profile</a>
+                        </li>
+                    </th:block>
+                    <th:block sec:authorize="hasRole('ROLE_ORDER_MANAGER')">
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/seller/create/product}">Test</a>
+                        </li>
+                    </th:block>
+                    <th:block sec:authorize="hasRole('ROLE_ROOT')">
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/admin/activities/all}">Activities Log</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/admin/register}">Register User</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/admin/categories}">Categories</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/admin/profile}">Profile</a>
+                        </li>
+                    </th:block>
+                    <th:block sec:authorize="!hasRole('ROLE_ROOT')">
+                        <li class="nav-item active">
+                            <a class="nav-link" th:href="@{/support/ticket}">Support</a>
+                        </li>
+                    </th:block>
+                    <li class="nav-item active">
+                        <form action="/logout?login" method="post">
+                            <button class="logout-button nav-link">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </th:block>
+</th:block>

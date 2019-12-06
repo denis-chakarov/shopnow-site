@@ -1,0 +1,69 @@
+<th:block>
+    <div class="form-group">
+        <label for="countryName" class="font-weight-bold">Country Name</label>
+        <input type="text" class="form-control" id="countryName" placeholder="Country name..." name="countryName"
+               th:value="*{countryName}">
+        <th:block th:if="${#fields.hasErrors('countryName')}">
+            <small class="error" th:errors="*{countryName}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="city" class="font-weight-bold">City</label>
+        <input type="text" class="form-control" id="city" placeholder="City..." name="city"
+               th:value="*{city}">
+        <th:block th:if="${#fields.hasErrors('city')}">
+            <small class="error" th:errors="*{city}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="street" class="font-weight-bold">Street</label>
+        <input type="text" class="form-control" id="street" placeholder="Street..." name="street"
+               th:value="*{street}">
+        <th:block th:if="${#fields.hasErrors('street')}">
+            <small class="error" th:errors="*{street}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="postalCode" class="font-weight-bold">Postal Code</label>
+        <input type="text" class="form-control" id="postalCode" placeholder="Postal code..." name="postalCode"
+               th:value="*{postalCode}">
+        <th:block th:if="${#fields.hasErrors('postalCode')}">
+            <small class="error" th:errors="*{postalCode}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="username" class="font-weight-bold">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Username..." name="username"
+               th:value="*{username}">
+        <th:block th:if="${#fields.hasErrors('username')}">
+            <small class="error" th:errors="*{username}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="password" class="font-weight-bold">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password..." name="password"
+               th:value="*{password}">
+        <th:block th:if="${#fields.hasErrors('password')}">
+            <small class="error" th:errors="*{password}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="confirmPassword" class="font-weight-bold">Confirm Password</label>
+        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password..."
+               name="confirmPassword" th:value="*{confirmPassword}">
+        <th:block th:if="${#fields.hasErrors('password')}">
+            <small class="error" th:errors="*{password}"></small>
+        </th:block>
+    </div>
+    <div class="form-group">
+        <label for="email" class="font-weight-bold">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Email..." name="email" th:value="*{email}">
+        <th:block th:if="${#fields.hasErrors('email')}">
+            <small class="error" th:errors="*{email}"></small>
+        </th:block>
+    </div>
+    <hr class="hr-2">
+    <div class="button-holder d-flex justify-content-center">
+        <button type="submit" class="btn bg-custom custom-light">Register</button>
+    </div>
+</th:block>

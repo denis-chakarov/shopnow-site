@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body class="bg-dark">
+<header>
+    <th:block th:include="~{fragments/navbar}"></th:block>
+</header>
+<main class="mt-3 ">
+    <h1 class="text-center text-dark">Order Products</h1>
+    <hr class="hr-2 bg-dark w-75">
+
+    <th:block th:each="orderProduct : ${order.products}">
+        <div class="order-products mt-lg-4 row">
+            <div class="col-2">
+                <img th:src="${orderProduct.product.imageUrl}" width="60" height="70" alt="Product">
+                <div  th:text="${orderProduct.product.name}"></div>
+                <div  th:text="|${orderProduct.product.price} bgn|"></div>
+            </div>
+            <div class="col-*-*">
+                <div  th:text="|Description: ${orderProduct.product.description}|"></div>
+                <div  th:text="|Seller: ${orderProduct.product.seller.name}|"></div>
+            </div>
+        </div>
+
+
+    </th:block>
+    <hr class="hr-2 bg-dark w-75">
+</main>
+<footer>
+    <th:block th:include="~{fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

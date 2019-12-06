@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{/fragments/head}"></th:block>
+</head>
+<body class="bg-dark">
+    <div class="container-fluid">
+        <th:block th:replace="fragments/navbar"></th:block>
+        <main class="mt-3">
+            <h1 class="text-center text-dark">Active Orders</h1>
+            <hr class="hr-2 bg-dark w-75">
+            <table class="table table-hover w-75 mx-auto">
+                <thead>
+                <tr class="row mx-auto">
+                    <th class="col-md-1 text-center">Made on</th>
+                    <th class="col-md-3 text-center">Order number</th>
+                    <th class="col-md-3 text-center">Status</th>
+                    <th class="col-md-3 text-center">Details</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="order: ${orders}">
+                    <tr class="row mx-auto">
+                        <td class="col-md-3 text-center" th:text="${order.purchaseDate}"></td>
+                        <td class="col-md-2 text-center" th:text="${order.id}"></td>
+                        <td class="col-md-2 text-center" th:text="${order.status}"></td>
+                        <td class="col-md-3 text-center">
+                            <a th:href="@{/manager/orders/{id}(id=${order.id})}" class="btn btn-secondary font-weight-bold text-white">Details</a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+            <hr class="hr-2 bg-dark">
+        </main>
+    </div>
+<footer>
+    <th:block th:include="~{/fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

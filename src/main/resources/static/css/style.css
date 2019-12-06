@@ -1,0 +1,68 @@
+hr.hr-2 {
+    height: 2px;
+}
+
+.logout-button {
+    background: transparent;
+    border: none;
+    font-weight: bold;
+    color: #f8f9fa! important;
+}
+
+.logout-button:hover {
+    cursor: pointer;
+}
+
+.logout-button:focus {
+    outline: none;
+}
+
+img.img-thumbnail {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px; /* Rounded border */
+    padding: 5px; /* Some padding */
+    max-width: 40px;
+    max-height: 40px;
+}
+
+.btn-width {
+    width: 120px;
+    margin: 5px;
+}
+
+.error {
+    color: red;
+    font-family: "Harlow Solid Italic";
+}
+
+.bg-custom, hr{
+    background-color:#879098;
+}
+
+.radio-position {
+    position:relative;
+    left:6%;
+}
+.register-radios {
+    width:47%;
+    position: relative;
+    left: 25%;
+}
+
+.order-products {
+    width:74%;
+    position:relative;
+    left: 13%;
+}
+
+#userNav a {
+    color:#f8f9fa !important;
+}
+
+.custom-light, div.form-group label {
+    color:#f8f9fa !important;
+}
+
+.bg-main, footer div {
+    background-color:#5f666d;
+}

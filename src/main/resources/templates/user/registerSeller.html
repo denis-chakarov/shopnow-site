@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+<body class="bg-dark">
+<header>
+    <!--    <th:block th:include="~{fragments/navbar}"></th:block>-->
+</header>
+<main class="mt-3">
+    <h1 class="text-center text-light">Register</h1>
+    <hr class="hr-2 w-25">
+        <form class="form w-25 mx-auto seller-form" th:action="@{/users/register/seller}" th:method="post" th:object="${model}">
+            <div class="form-group">
+                <label for="storeName" class="font-weight-bold">Store Name</label>
+                <input type="text" class="form-control" id="storeName" placeholder="Store name..." name="name"
+                       th:value="*{name}">
+                <th:block th:if="${#fields.hasErrors('name')}">
+                    <small class="error" th:errors="*{name}"></small>
+                </th:block>
+            </div>
+            <th:block th:include="~{fragments/commonRegister}"></th:block>
+        </form>
+</main>
+<footer>
+    <th:block th:include="~{fragments/footer}"></th:block>
+</footer>
+</body>
+</html>

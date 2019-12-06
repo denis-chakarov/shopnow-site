@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <th:block th:replace="fragments/navbar"></th:block>
+    <main class="mt-3">
+        <h1 class="text-center text-dark">User Activities Log</h1>
+        <hr class="hr-2 bg-dark w-75">
+        <div>
+            <table class="table table-hover w-75 ">
+                <thead>
+                <tr class="row mx-auto">
+                    <th class="col-md-1 text-center">Date</th>
+                    <th class="col-md-1 text-center">IP</th>
+                    <th class="col-md-3 text-center">Requested Url</th>
+                    <th class="col-md-3 text-center">Log Message</th>
+                    <th class="col-md-1 text-center">User Authority</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <th:block th:each="activity : ${activities}">
+                        <tr class="row">
+                            <td class="col-md-3 text-center" th:text="${activity.timeOfActivity}"></td>
+                            <td class="col-md-3 text-center" th:text="${activity.userIP}"></td>
+                            <td class="col-md-3 text-center" th:text="${activity.url}"></td>
+                            <td class="col-md-3 text-center" th:text="${activity.username} + ' ' + ${activity.message}"></td>
+                            <td class="col-md-3 text-center" th:text="${activity.userAuthority}"></td>
+                        </tr>
+                    </th:block>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <th:block th:replace="fragments/footer"></th:block>
+</div>
+<script>
+
+</script>
+</body>
+</html>

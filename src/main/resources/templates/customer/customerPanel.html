@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <th:block th:replace="fragments/head"></th:block>
+</head>
+<body class="bg-dark">
+<div class="container-fluid">
+    <th:block th:replace="fragments/navbar"></th:block>
+    <main class="mt-3">
+        <div class="justify-content-between">
+            <div class="row">
+                <div class="col" style="max-width:24%">
+                    <div class="list-group" id="categories-tab" role="tablist">
+                        <th:block th:each="category : ${categories}" th:object="${category}">
+                            <a class="list-group-item list-group-item-action category-type"
+                                data-toggle="list" th:value="${category.name}" role="tab" th:text="${category.name}"></a>
+                        </th:block>
+                    </div>
+                </div>
+                <div class="col products-section">
+                        fsapfjasdlkfjadskl;fj;alsdjf;lasdjf<br>adsdasdasdsad<br>asdasdasdas
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <th:block th:replace="fragments/footer"></th:block>
+</div>
+<script>
+    function formatProduct(product) {
+        return '<div class="product">'
+            + '<div class="text-center">'
+            + `<a href="/products/details/${product.id}"><img src="${product.imageUrl}" class="product-image-home img-thumbnail px-auto" alt="Image not loaded..."/></a>`
+            + '</div>'
+            + `<h5 class="text-center font-weight-bold mt-3">Name: ${product.name}</h5>`
+            + `<h5 class="text-center font-weight-bold">Price: ${product.price.toFixed(2)}</h5>`
+            + '</div>'
+    }
+
+
+    $("#categories-tab a").on('click', function () {
+        let category = $(this).val();
+        $.ajax({
+            method: 'GET',
+            url: "/product/fetch/watches" //+ category
+        })
+    .then(function (products) {
+            $('.products-section').empty();
+
+            if(products.length == 0) {
+                $('.products-section').append(`<h1 class="text-center font-weight-bold">There are no products in the ${category} category.</h1>`)
+            }
+            else {
+                for (let i = 0; i < json.length; i += 3) {
+                    $('.products-section').append('<div class="products-row row d-flex justify-content-around mt-5">');
+                    if(i < json.length) $('.products-section .products-row:last-child').append(formatProduct(json[i]));
+                    if(i + 1 < json.length) $('.products-section .products-row:last-child').append(formatProduct(json[i + 1]));
+                    if(i + 2 < json.length) $('.products-section .products-row:last-child').append(formatProduct(json[i + 2]));
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>
