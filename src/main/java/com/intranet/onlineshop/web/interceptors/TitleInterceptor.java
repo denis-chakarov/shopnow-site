@@ -1,6 +1,8 @@
 package com.intranet.onlineshop.web.interceptors;
 
 import com.intranet.onlineshop.web.annotations.PageTitle;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,19 +14,27 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class TitleInterceptor extends HandlerInterceptorAdapter {
 
+    private final Environment environment;
+
+    @Autowired
+    public TitleInterceptor(Environment environment) {
+        this.environment = environment;
+    }
+
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        String title = "E-Store";
+        String title = "ShopNow";
 
         if (modelAndView == null) {
             modelAndView = new ModelAndView();
         } else {
             if (handler instanceof HandlerMethod) {
-                PageTitle methodAnnotation = ((HandlerMethod) handler).getMethodAnnotation(PageTitle.class);
+                PageTitle pageTitle = ((HandlerMethod) handler).getMethodAnnotation(PageTitle.class);
 
-                if (methodAnnotation != null) {
+                if (pageTitle != null) {
+                    String message = environment.getProperty(pageTitle.value());
                     modelAndView
-                            .addObject("title", title + " - " + methodAnnotation.value());
+                            .addObject("title", title + " - " + message);
                 }
             }
         }

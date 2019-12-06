@@ -26,7 +26,7 @@ public class HomeController extends BaseController {
     }
 
     @GetMapping("/")
-    @PageTitle("Welcome")
+    @PageTitle("index.page.title")
     public ModelAndView index() {
         return view("index");
     }

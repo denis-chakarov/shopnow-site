@@ -5,6 +5,7 @@ import com.intranet.onlineshop.domain.models.service.OrderServiceModel;
 import com.intranet.onlineshop.domain.models.view.QuickOrderViewModel;
 import com.intranet.onlineshop.repository.OrderRepository;
 import com.intranet.onlineshop.service.OrderService;
+import com.intranet.onlineshop.web.annotations.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ public class OrderManagerController extends BaseController {
         this.modelMapper = modelMapper;
     }
 
+    @PageTitle(value = "manager.page.title.orders.confirmed")
     @GetMapping("/orders/confirmed")
     public ModelAndView showConfirmedOrders(ModelAndView modelAndView) {
         List<OrderServiceModel> confirmedOrders = orderService.findAllOrdersWithStatus(Status.CONFIRMED);
@@ -41,6 +43,7 @@ public class OrderManagerController extends BaseController {
         return view( "manager/home", modelAndView);
     }
 
+    @PageTitle(value = "manager.page.title.orders.id")
     @GetMapping("/orders/{id}")
     public ModelAndView showOrderDetails(ModelAndView modelAndView, @PathVariable String id) {
         OrderServiceModel order = orderService.findOrderById(id);

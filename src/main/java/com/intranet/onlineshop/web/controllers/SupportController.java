@@ -4,6 +4,7 @@ import com.intranet.onlineshop.domain.entities.TicketType;
 import com.intranet.onlineshop.domain.models.binding.TicketBindingModel;
 import com.intranet.onlineshop.domain.models.service.TicketServiceModel;
 import com.intranet.onlineshop.service.SupportService;
+import com.intranet.onlineshop.web.annotations.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,6 +31,7 @@ public class SupportController extends BaseController{
     }
 
     @GetMapping("/ticket")
+    @PageTitle(value = "support.page.title.ticket")
     public ModelAndView sendTicket() {
         return view("support/ticket-form");
     }

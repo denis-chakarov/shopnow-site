@@ -31,7 +31,7 @@ public class ActivityInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        Path path  = Path.of(request.getRequestURI());
+        //Path path  = Path.of(request.getRequestURI());
         if(request.getUserPrincipal() != null) {
             UserActivityServiceModel model = new UserActivityServiceModel();
             String clientIP = getClientIpAddress(request);
@@ -69,9 +69,6 @@ public class ActivityInterceptor extends HandlerInterceptorAdapter {
         if (xForwardedForHeader == null) {
             return request.getRemoteAddr();
         } else {
-            // As of https://en.wikipedia.org/wiki/X-Forwarded-For
-            // The general format of the field is: X-Forwarded-For: client, proxy1, proxy2 ...
-            // we only want the client
             return new StringTokenizer(xForwardedForHeader, ",").nextToken().trim();
         }
     }

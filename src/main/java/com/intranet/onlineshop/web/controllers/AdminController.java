@@ -11,6 +11,7 @@ import com.intranet.onlineshop.service.CategoryService;
 import com.intranet.onlineshop.service.UserActivityService;
 import com.intranet.onlineshop.service.UserService;
 import com.intranet.onlineshop.validation.user.UserRegisterValidator;
+import com.intranet.onlineshop.web.annotations.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,7 @@ public class AdminController extends BaseController {
     }
 
 
+    @PageTitle(value = "admin.page.title.register")
     @GetMapping("/register")
     public ModelAndView registerUser(ModelAndView modelAndView,
                              @ModelAttribute(name = "model")BaseUserBindingModel model) {
@@ -66,6 +68,7 @@ public class AdminController extends BaseController {
         return redirect("/home");
     }
 
+    @PageTitle(value = "admin.page.title.categories")
     @GetMapping("/categories")
     public ModelAndView showAllCategories(ModelAndView modelAndView) {
         List<CategoryViewModel> categories = categoryService.findAllCategories()
@@ -77,6 +80,7 @@ public class AdminController extends BaseController {
         return view("admin/categories", modelAndView);
     }
 
+    @PageTitle(value = "admin.page.title.activities")
     @GetMapping("/activities/all")
     public ModelAndView showActivitiesLog(ModelAndView modelAndView) {
         List<UserActivityServiceModel> activities = userActivityService.findAllActivities();
@@ -93,12 +97,14 @@ public class AdminController extends BaseController {
         return userActivityService.findAllActivitiesForUser(model.getUsername());
     }
 
+    @PageTitle(value = "admin.page.title.categories.delete")
     @GetMapping("/categories/delete/{id}")
     public ModelAndView deleteCategory(@PathVariable String id) {
          categoryService.deleteCategory(id);
          return redirect("/admin/categories");
     }
 
+    @PageTitle(value = "admin.page.title.categories.edit")
     @GetMapping("categories/edit/{id}")
     public ModelAndView editCategory(@PathVariable String id, ModelAndView modelAndView) {
         CategoryServiceModel serviceModel = categoryService.findCategoryById(id);

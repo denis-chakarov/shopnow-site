@@ -10,6 +10,7 @@ import com.intranet.onlineshop.service.CloudinaryService;
 import com.intranet.onlineshop.service.ProductService;
 import com.intranet.onlineshop.service.SellerService;
 import com.intranet.onlineshop.web.annotations.ActionLogger;
+import com.intranet.onlineshop.web.annotations.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -43,6 +44,7 @@ public class SellerController extends BaseController {
     }
 
     @ActionLogger("seller.create.product.get.log")
+    @PageTitle(value = "seller.page.title.create.product")
     @GetMapping("/create/product")
     public ModelAndView createProduct() {
         return view("seller/create-product");
@@ -65,6 +67,7 @@ public class SellerController extends BaseController {
     }
 
     @ActionLogger("seller.view.all.products.get.log")
+    @PageTitle(value = "seller.page.title.all")
     @GetMapping("/all")
     public ModelAndView showAllProducts(ModelAndView modelAndView, Principal principal) {
         Set<ProductServiceModel> products = sellerService.getAllProductsByUsername(principal.getName());
@@ -78,6 +81,7 @@ public class SellerController extends BaseController {
     }
 
     @ActionLogger("seller.view.requests.get.log")
+    @PageTitle(value = "seller.page.title.requests")
     @GetMapping("/requests")
     public ModelAndView showRequestedProducts(ModelAndView modelAndView, Principal principal) {
         Set<ProductRequestMessageServiceModel> productRequests = sellerService.getRequestedProductsByUsername(principal.getName());
