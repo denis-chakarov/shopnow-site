@@ -39,6 +39,7 @@ public class UserController extends BaseController {
         this.baseUserEditValidator = baseUserEditValidator;
     }
 
+    @PageTitle(value = "users.page.title.register.customer")
     @GetMapping("/register/customer")
     public ModelAndView registerCustomer(ModelAndView modelAndView, @ModelAttribute(name = "model") CustomerRegisterBindingModel model) {
         modelAndView.addObject("model", model);
@@ -63,6 +64,7 @@ public class UserController extends BaseController {
         return redirect("/login");
     }
 
+    @PageTitle(value = "users.page.title.register.seller")
     @GetMapping("/register/seller")
     public ModelAndView registerSeller(@ModelAttribute(name = "model") SellerRegisterBindingModel model,
                                                                    ModelAndView modelAndView) {
@@ -88,12 +90,13 @@ public class UserController extends BaseController {
         return super.redirect("/login");
     }
 
+    @PageTitle(value = "users.page.title.login")
     @GetMapping("/login")
-    @PageTitle("Login")
     public ModelAndView login() {
         return view("user/login");
     }
 
+    @PageTitle(value = "users.page.title.edit")
     @GetMapping("/edit")
     @PreAuthorize("hasAnyRole('ROLE_ROOT', 'ROLE_SUPPORT', 'ROLE_ORDER_MANAGER')")
     public ModelAndView editInternalUserProfile() {
