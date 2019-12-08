@@ -4,14 +4,14 @@
 <head>
     <th:block th:include="~{fragments/head}"></th:block>
 </head>
-<body>
+<body class="bg-dark">
 <header>
     <th:block th:include="~{fragments/navbar}"></th:block>
 </header>
 <main class="mt-3">
-    <h1 class="text-center text-dark">All Categories</h1>
-    <hr class="hr-2 bg-dark w-75">
-    <table class="table table-hover w-75 mx-auto">
+    <h1 class="text-center custom-light">All Categories</h1>
+    <hr class="hr-2 w-75">
+    <table class="table table-hover w-75 mx-auto bg-custom custom-light">
         <thead>
         <tr class="row mx-auto">
             <th class="col-md-2 text-center">#</th>
@@ -26,14 +26,14 @@
                 <th class="col-md-2 text-center" th:text="${iter.index + 1}"></th>
                 <td class="col-md-5 text-center"  th:text="${category.name}"></td>
                 <td class="col-md-5 text-center">
-                    <a th:href="@{/admin/categories/edit/{id}(id=${category.id})}" class="btn btn-dark">Edit</a>
-                    <a th:href="@{/admin/categories/delete/{id}(id=${category.id})}"  class="btn btn-dark">Delete</a>
+                    <a th:href="@{/admin/categories/edit/{id}(id=${category.id})}" class="btn btn-success">Edit</a>
+                    <a th:href="@{/admin/categories/delete/{id}(id=${category.id})}"  class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         </th:block>
         </tbody>
     </table>
-    <hr class="hr-2 bg-dark">
+    <hr class="hr-2">
 </main>
 <footer>
     <th:block th:include="~{fragments/footer}"></th:block>

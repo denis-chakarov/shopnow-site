@@ -11,7 +11,6 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.StringTokenizer;
 
@@ -31,8 +30,8 @@ public class ActivityInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        //Path path  = Path.of(request.getRequestURI());
-        if(request.getUserPrincipal() != null) {
+        boolean isValidAction = !(request.getRequestURI().contains("/css") || request.getRequestURI().contains("/js"));
+        if(request.getUserPrincipal() != null && isValidAction) {
             UserActivityServiceModel model = new UserActivityServiceModel();
             String clientIP = getClientIpAddress(request);
             model.setUserIP(clientIP);

@@ -11,6 +11,7 @@ import com.intranet.onlineshop.service.CategoryService;
 import com.intranet.onlineshop.service.UserActivityService;
 import com.intranet.onlineshop.service.UserService;
 import com.intranet.onlineshop.validation.user.UserRegisterValidator;
+import com.intranet.onlineshop.web.annotations.ActionLogger;
 import com.intranet.onlineshop.web.annotations.PageTitle;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class AdminController extends BaseController {
 
 
     @PageTitle(value = "admin.page.title.register")
+    @ActionLogger(value = "admin.register.user.log.get")
     @GetMapping("/register")
     public ModelAndView registerUser(ModelAndView modelAndView,
                              @ModelAttribute(name = "model")BaseUserBindingModel model) {
@@ -51,6 +53,7 @@ public class AdminController extends BaseController {
         return view("admin/registerUser", modelAndView);
     }
 
+    @ActionLogger(value = "admin.register.user.log.post")
     @PostMapping("/register")
     public ModelAndView registerUserConfirm(ModelAndView modelAndView,
                                             @ModelAttribute(name = "model") BaseUserBindingModel model,
@@ -69,6 +72,7 @@ public class AdminController extends BaseController {
     }
 
     @PageTitle(value = "admin.page.title.categories")
+    @ActionLogger(value = "admin.categories.log.get")
     @GetMapping("/categories")
     public ModelAndView showAllCategories(ModelAndView modelAndView) {
         List<CategoryViewModel> categories = categoryService.findAllCategories()
