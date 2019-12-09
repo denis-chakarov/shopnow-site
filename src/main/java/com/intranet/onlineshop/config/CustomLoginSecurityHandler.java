@@ -11,12 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Set;
 
+/**
+ * Bean class used for implementing a login security handler
+ */
 @Component
 public class CustomLoginSecurityHandler implements AuthenticationSuccessHandler {
+    /**
+     *
+     * @param httpServletRequest the http request
+     * @param httpServletResponse the http response
+     * @param authentication contains the user authorities
+     * @throws IOException when the response cannot redirect
+     */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest,
                                         HttpServletResponse httpServletResponse,
-                                        Authentication authentication) throws IOException, ServletException {
+                                        Authentication authentication) throws IOException {
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         if (roles.contains("ROLE_ROOT")) {
             httpServletResponse.sendRedirect("/admin/register");

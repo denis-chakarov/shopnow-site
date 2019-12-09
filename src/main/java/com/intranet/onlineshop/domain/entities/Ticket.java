@@ -3,6 +3,9 @@ package com.intranet.onlineshop.domain.entities;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+/**
+ * Class used for representing the table tickets in the database
+ */
 @Entity
 @Table(name = "tickets")
 public class Ticket extends BaseEntity {

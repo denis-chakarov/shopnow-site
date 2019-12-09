@@ -30,6 +30,9 @@ public class SellerServiceImpl implements SellerService {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * @see SellerService#addProduct(String, ProductServiceModel)
+     */
     @Override
     public void addProduct(String sellerUsername, ProductServiceModel productServiceModel) {
         Seller seller = sellerRepository.findSellerByUser_Username(sellerUsername);
@@ -37,6 +40,9 @@ public class SellerServiceImpl implements SellerService {
         sellerRepository.save(seller);
     }
 
+    /**
+     * @see SellerService#getAllProductsByUsername(String)
+     */
     @Override
     public Set<ProductServiceModel> getAllProductsByUsername(String username) {
         Seller seller = sellerRepository.findSellerByUser_Username(username);
@@ -46,6 +52,9 @@ public class SellerServiceImpl implements SellerService {
         return modelMapper.map(products, listType);
     }
 
+    /**
+     * @see SellerService#getAllProductsByUsername(String)
+     */
     @Override
     public Set<ProductRequestMessageServiceModel> getRequestedProductsByUsername(String username) {
         Seller seller = sellerRepository.findSellerByUser_Username(username);

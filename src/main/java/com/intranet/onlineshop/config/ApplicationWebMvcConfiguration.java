@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * Configuration class used for registering the custom interceptors
+ */
 @Configuration
 public class ApplicationWebMvcConfiguration implements WebMvcConfigurer {
 
@@ -19,6 +22,10 @@ public class ApplicationWebMvcConfiguration implements WebMvcConfigurer {
         this.activityInterceptor = activityInterceptor;
     }
 
+    /**
+     * registering the interceptors
+     * @param registry used for registering
+     */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(titleInterceptor);

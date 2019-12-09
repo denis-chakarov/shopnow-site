@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * Class used for representing the table post_office_connections in the database
+ */
 @Entity
 @Table(name = "post_office_connections")
 public class PostOfficeConnection extends BaseEntity {

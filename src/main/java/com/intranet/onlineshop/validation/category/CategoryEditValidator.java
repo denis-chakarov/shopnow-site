@@ -7,6 +7,9 @@ import com.intranet.onlineshop.validation.annotation.CustomValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 
+/**
+ * Editing category validator
+ */
 @CustomValidator
 public class CategoryEditValidator implements org.springframework.validation.Validator {
 

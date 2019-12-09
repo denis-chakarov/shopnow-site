@@ -11,6 +11,9 @@ import javax.validation.Validator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of the category service interface
+ */
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -25,6 +28,9 @@ public class CategoryServiceImpl implements CategoryService {
         this.validator = validator;
     }
 
+    /**
+     * @see CategoryService#addCategory(CategoryServiceModel)
+     */
     @Override
     public CategoryServiceModel addCategory(CategoryServiceModel categoryServiceModel) {
         if (!validator.validate(categoryServiceModel).isEmpty()) {
@@ -36,6 +42,9 @@ public class CategoryServiceImpl implements CategoryService {
         return this.modelMapper.map(this.categoryRepository.saveAndFlush(category), CategoryServiceModel.class);
     }
 
+    /**
+     * @see CategoryService#findAllCategories()
+     */
     @Override
     public List<CategoryServiceModel> findAllCategories() {
         return this.categoryRepository.findAll()
@@ -44,6 +53,9 @@ public class CategoryServiceImpl implements CategoryService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * @see CategoryService#findCategoryById(String)
+     */
     @Override
     public CategoryServiceModel findCategoryById(String id) {
         Category category = this.categoryRepository.findById(id)
@@ -52,6 +64,9 @@ public class CategoryServiceImpl implements CategoryService {
         return this.modelMapper.map(category, CategoryServiceModel.class);
     }
 
+    /**
+     * @see CategoryService#editCategory(String, CategoryServiceModel)
+     */
     @Override
     public CategoryServiceModel editCategory(String id, CategoryServiceModel categoryServiceModel) {
         Category category = this.categoryRepository.findById(id)
@@ -62,6 +77,9 @@ public class CategoryServiceImpl implements CategoryService {
         return this.modelMapper.map(this.categoryRepository.saveAndFlush(category), CategoryServiceModel.class);
     }
 
+    /**
+     * @see CategoryService#deleteCategory(String)
+     */
     @Override
     public CategoryServiceModel deleteCategory(String id) {
         Category category = this.categoryRepository.findById(id)

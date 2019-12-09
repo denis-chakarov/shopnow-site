@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Class used for representing the sellers in the database
+ */
 @Entity
 @Table(name = "sellers")
 public class Seller extends BaseEntity {

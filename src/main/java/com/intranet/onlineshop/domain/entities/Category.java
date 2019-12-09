@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * Class used for representing the table categories in the database
+ */
 @Entity
 @Table(name = "categories")
 public class Category extends BaseEntity {

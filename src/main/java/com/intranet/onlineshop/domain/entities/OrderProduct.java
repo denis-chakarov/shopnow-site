@@ -2,6 +2,9 @@ package com.intranet.onlineshop.domain.entities;
 
 import javax.persistence.*;
 
+/**
+ * Class used for representing the table order_products in the database
+ */
 @Entity
 @Table(name = "order_products")
 public class OrderProduct extends BaseEntity {

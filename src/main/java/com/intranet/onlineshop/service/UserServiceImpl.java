@@ -13,6 +13,7 @@ import com.intranet.onlineshop.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of UserService's business logic
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -41,9 +45,12 @@ public class UserServiceImpl implements UserService {
         this.sellerRepository = sellerRepository;
     }
 
+    /**
+     * @see UserService#registerUser(UserServiceModel, String)
+     */
     @Override
     public void registerUser(UserServiceModel userServiceModel, String role) {
-        this.roleService.seedRolesInDb();
+        //roleService.seedRolesInDb();
         userServiceModel.setAuthorities(new LinkedHashSet<>());
 //        if (this.userRepository.count() == 0) {
 //            userServiceModel.getAuthorities().add(this.roleService.findByAuthority("ROLE_ROOT"));
@@ -72,6 +79,9 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    /**
+     * @see UserDetailsService#loadUserByUsername(String)
+     */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return this.userRepository
@@ -79,6 +89,9 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found!"));
     }
 
+    /**
+     * @see UserService#findUserByUserName(String)
+     */
     @Override
     public UserServiceModel findUserByUserName(String username) {
         return this.userRepository.findByUsername(username)
@@ -86,6 +99,9 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found!"));
     }
 
+    /**
+     * @see UserService#editInternalUserProfile(BaseUserEditServiceModel)
+     */
     @Override
     public void editInternalUserProfile(BaseUserEditServiceModel userServiceModel) {
         User user = userRepository.findByUsername(userServiceModel.getUsername())
@@ -98,11 +114,17 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    /**
+     * @see UserService#findAllUsers()
+     */
     @Override
     public List<UserServiceModel> findAllUsers() {
         return userRepository.findAll().stream().map(u -> this.modelMapper.map(u, UserServiceModel.class)).collect(Collectors.toList());
     }
 
+    /**
+     * @see UserService#setUserRole(String, String)
+     */
     @Override
     public void setUserRole(String id, String role) {
         User user = this.userRepository.findById(id)

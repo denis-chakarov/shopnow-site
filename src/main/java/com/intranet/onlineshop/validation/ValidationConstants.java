@@ -1,5 +1,8 @@
 package com.intranet.onlineshop.validation;
 
+/**
+ * Global constants class
+ */
 public class ValidationConstants {
 
     public final static String USERNAME_ALREADY_EXISTS = "Username %s already exists!";

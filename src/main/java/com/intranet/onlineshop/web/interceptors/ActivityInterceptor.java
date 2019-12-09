@@ -14,6 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDateTime;
 import java.util.StringTokenizer;
 
+
+/**
+ * Interceptor class used for monitoring user activities
+ */
 @Component
 @PropertySource("classpath:method.properties")
 public class ActivityInterceptor extends HandlerInterceptorAdapter {
@@ -27,6 +31,10 @@ public class ActivityInterceptor extends HandlerInterceptorAdapter {
         this.environment = environment;
     }
 
+    /**
+     * Intercepts the request and creates an user activity object in the database
+     * @see HandlerInterceptorAdapter#preHandle(HttpServletRequest, HttpServletResponse, Object)
+     */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 

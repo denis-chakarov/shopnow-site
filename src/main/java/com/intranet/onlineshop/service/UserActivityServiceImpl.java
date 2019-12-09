@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of UserActivityService's business logic
+ */
 @Service
 public class UserActivityServiceImpl implements UserActivityService {
 
@@ -22,12 +25,18 @@ public class UserActivityServiceImpl implements UserActivityService {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * @see UserActivityService#createUserActivity(UserActivityServiceModel)
+     */
     @Override
     public void createUserActivity(UserActivityServiceModel userActivityServiceModel) {
         UserActivity userActivity = modelMapper.map(userActivityServiceModel, UserActivity.class);
         userActivityRepository.save(userActivity);
     }
 
+    /**
+     * @see UserActivityService#findAllActivitiesForUser(String)
+     */
     @Override
     public List<UserActivityServiceModel> findAllActivitiesForUser(String username) {
         return userActivityRepository.findAllByUsername(username)
@@ -36,6 +45,9 @@ public class UserActivityServiceImpl implements UserActivityService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * @see UserActivityService#findAllActivities()
+     */
     @Override
     public List<UserActivityServiceModel> findAllActivities() {
         return userActivityRepository.findAllByOrderByTimeOfActivityDesc()

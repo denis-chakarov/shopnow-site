@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of the order service interface
+ */
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -36,6 +39,9 @@ public class OrderServiceImpl implements OrderService {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * @see OrderService#createOrder(OrderServiceModel)
+     */
     @Override
     @Transactional
     public void createOrder(OrderServiceModel orderServiceModel) {
@@ -44,6 +50,9 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.saveAndFlush(modelMapper.map(orderServiceModel, Order.class));
     }
 
+    /**
+     * @see OrderService#findAllOrders()
+     */
     @Override
     public List<OrderServiceModel> findAllOrders() {
         List<Order> orders = orderRepository.findAll();
@@ -55,6 +64,9 @@ public class OrderServiceImpl implements OrderService {
         return orderServiceModels;
     }
 
+    /**
+     * @see OrderService#findAllOrdersWithStatus(Status)
+     */
     @Override
     public List<OrderServiceModel> findAllOrdersWithStatus(Status status) {
         List<Order> orders = orderRepository.findAllByStatusEquals(status);
@@ -66,6 +78,9 @@ public class OrderServiceImpl implements OrderService {
         return orderServiceModels;
     }
 
+    /**
+     * @see OrderService#findOrdersByCustomer(String)
+     */
     @Override
     public List<OrderServiceModel> findOrdersByCustomer(String username) {
         return null;/*this.orderRepository.findAllOrdersByCustomer_UsernameOrderByFinishedOn(username)
@@ -74,10 +89,13 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());*/
     }
 
+    /**
+     * @see OrderService#findOrderById(String)
+     */
     @Override
     public OrderServiceModel findOrderById(String id) {
         return orderRepository.findById(id)
                 .map(o -> this.modelMapper.map(o, OrderServiceModel.class))
-                .orElseThrow(() -> new OrderNotFoundException("Nqma Go"));
+                .orElseThrow(() -> new OrderNotFoundException("No order found!"));
     }
 }

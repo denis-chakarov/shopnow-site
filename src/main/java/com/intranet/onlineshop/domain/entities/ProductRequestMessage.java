@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Class used for representing the table product_request_messages in the database
+ */
 @Entity
 @Table(name = "product_request_messages")
 public class ProductRequestMessage extends BaseEntity {

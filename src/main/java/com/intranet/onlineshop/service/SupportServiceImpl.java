@@ -7,6 +7,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Implementation of SupportService's business logic
+ */
 @Service
 public class SupportServiceImpl implements SupportService {
 
@@ -19,6 +22,9 @@ public class SupportServiceImpl implements SupportService {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * @see SupportService#createTicket(TicketServiceModel)
+     */
     @Override
     public void createTicket(TicketServiceModel ticketServiceModel) {
         Ticket ticket = modelMapper.map(ticketServiceModel, Ticket.class);

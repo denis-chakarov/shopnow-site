@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 
+/**
+ * Configuration class used for uploading pictures to a cloud service provider
+ */
 @Configuration
 public class ApplicationCloudConfiguration {
 

@@ -23,6 +23,9 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Controller class used for handling the requests regarding the admin functionality
+ */
 @Controller
 @RequestMapping("/admin")
 public class AdminController extends BaseController {

@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * Class used for representing the table addresses in the database
+ */
 @Entity
 @Table(name = "addresses")
 public class Address extends BaseEntity {

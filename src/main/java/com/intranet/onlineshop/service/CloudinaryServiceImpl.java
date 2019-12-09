@@ -9,8 +9,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
+/**
+ * Implementation of the cloudinary service interface
+ */
 @Service
 public class CloudinaryServiceImpl implements CloudinaryService {
+
     private final Cloudinary cloudinary;
 
     @Autowired
@@ -18,6 +22,9 @@ public class CloudinaryServiceImpl implements CloudinaryService {
         this.cloudinary = cloudinary;
     }
 
+    /**
+     * @see CloudinaryService#uploadImage(MultipartFile)
+     */
     @Override
     public String uploadImage(MultipartFile multipartFile) throws IOException {
         File file = File

@@ -9,6 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+/**
+ * Configuration class used for declaring beans so they can be injected by the spring IoC container
+ */
 @Configuration
 public class ApplicationBeanConfiguration {
 
@@ -24,6 +27,9 @@ public class ApplicationBeanConfiguration {
         return mapper;
     }
 
+    /**
+     * used for encrypting passwords
+     */
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -33,9 +39,4 @@ public class ApplicationBeanConfiguration {
     public Validator validator() {
         return Validation.buildDefaultValidatorFactory().getValidator();
     }
-
-//    @Bean
-//    public CustomSecurityHandler customSecurityHandler() {
-//        return new CustomSecurityHandler();
-//    }
 }

@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Class used for representing the orders addresses in the database
+ */
 @Entity
 @Table(name = "orders")
 public class Order extends BaseEntity {

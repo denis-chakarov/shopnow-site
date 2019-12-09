@@ -4,6 +4,10 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+
+/**
+ * Class used for representing the table products in the database
+ */
 @Entity
 @Table(name = "products")
 public class Product extends BaseEntity {

@@ -7,9 +7,15 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository class used for executing queries on the orders table represented by the Order class
+ */
 @Repository
 public interface OrderRepository extends JpaRepository<Order, String> {
-
-    //List<Order> findAllOrdersByCustomer_UsernameOrderByFinishedOn(String username);
+    /**
+     * finds an order by status
+     * @param status the order's status
+     * @return returns the order
+     */
     List<Order> findAllByStatusEquals(Status status);
 }

@@ -6,9 +6,13 @@ import com.intranet.onlineshop.validation.ValidationConstants;
 import com.intranet.onlineshop.validation.annotation.CustomValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
+/**
+ * Adding category validator
+ */
 @CustomValidator
-public class CategoryAddValidator implements org.springframework.validation.Validator {
+public class CategoryAddValidator implements Validator {
 
     private final CategoryRepository categoryRepository;
 
@@ -17,11 +21,17 @@ public class CategoryAddValidator implements org.springframework.validation.Vali
         this.categoryRepository = categoryRepository;
     }
 
+    /**
+     * @see Validator#supports(Class)
+     */
     @Override
     public boolean supports(Class<?> aClass) {
         return CategoryBindingModel.class.equals(aClass);
     }
 
+    /**
+     * @see Validator#validate(Object, Errors)
+     */
     @Override
     public void validate(Object o, Errors errors) {
         CategoryBindingModel categoryAddBindingModel = (CategoryBindingModel) o;

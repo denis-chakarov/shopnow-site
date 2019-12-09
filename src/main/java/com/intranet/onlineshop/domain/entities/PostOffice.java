@@ -3,6 +3,9 @@ package com.intranet.onlineshop.domain.entities;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Class used for representing the table post_offices in the database
+ */
 @Entity
 @Table(name = "post_offices")
 public class PostOffice extends BaseEntity {

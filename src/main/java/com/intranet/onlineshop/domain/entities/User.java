@@ -5,6 +5,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * Class used for representing the table users in the database
+ */
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity implements UserDetails {

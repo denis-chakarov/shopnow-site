@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
+/**
+ * Class used for representing the table user_activity_logger in the database
+ */
 @Entity
 @Table(name = "user_activity_logger")
 public class UserActivity extends BaseEntity {

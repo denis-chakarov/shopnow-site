@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of ProductService's business logic
+ */
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -28,6 +31,9 @@ public class ProductServiceImpl implements ProductService {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * @see ProductService#createProduct(ProductServiceModel, Seller)
+     */
     @Override
     public void createProduct(ProductServiceModel productServiceModel, Seller seller) {
         Product product = this.productRepository
@@ -43,6 +49,9 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
     }
 
+    /**
+     * @see ProductService#findAllProducts()
+     */
     @Override
     public List<ProductServiceModel> findAllProducts() {
         return productRepository.findAll()
@@ -51,11 +60,17 @@ public class ProductServiceImpl implements ProductService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * @see ProductService#findProductById(String)
+     */
     @Override
     public ProductServiceModel findProductById(String id) {
        return null;
     }
 
+    /**
+     * @see ProductService#editProduct(String, ProductServiceModel)
+     */
     @Override
     public ProductServiceModel editProduct(String id, ProductServiceModel productServiceModel) {
         Product product = productRepository.findById(id)
@@ -88,6 +103,9 @@ public class ProductServiceImpl implements ProductService {
         return this.modelMapper.map(productRepository.saveAndFlush(product), ProductServiceModel.class);
     }
 
+    /**
+     * @see ProductService#deleteProduct(String)
+     */
     @Override
     public void deleteProduct(String id) {
         Product product = productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product with the given id was not found!"));
@@ -95,6 +113,9 @@ public class ProductServiceImpl implements ProductService {
         productRepository.delete(product);
     }
 
+    /**
+     * @see ProductService#findAllByCategory(String)
+     */
     @Override
     public List<ProductServiceModel> findAllByCategory(String category) {
         //TODO: OPTIMIZE FILTERING

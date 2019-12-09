@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of the PostOfficeMapService's business logic
+ */
 @Service
 public class PostOfficesMapServiceImpl implements PostOfficesMapService {
 
@@ -28,6 +31,9 @@ public class PostOfficesMapServiceImpl implements PostOfficesMapService {
         this.modelMapper = modelMapper;
     }
 
+    /**
+     * @see PostOfficesMapService#findShortestPathsFrom(String)
+     */
     @Override
     public Map<String, NodeStateModel> findShortestPathsFrom(String postOfficeName) {
         Map<String, List<GraphNodeModel>> graph = buildPostOfficesGraph();
@@ -72,6 +78,9 @@ public class PostOfficesMapServiceImpl implements PostOfficesMapService {
     }
 
 
+    /**
+     * @see PostOfficesMapService#findFirstCommonPostOffice(String, Map, List)
+     */
     @Override
     public PostOfficeServiceModel findFirstCommonPostOffice(String startNode, Map<String, NodeStateModel> nodes,
                                                             List<String> targetNodeNames) {

@@ -1,6 +1,5 @@
 package com.intranet.onlineshop.service;
 
-import com.intranet.onlineshop.domain.entities.Role;
 import com.intranet.onlineshop.domain.models.service.RoleServiceModel;
 import com.intranet.onlineshop.repository.RoleRepository;
 import org.modelmapper.ModelMapper;
@@ -10,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of RoleService's business logic
+ */
 @Service
 public class RoleServiceImpl implements RoleService {
 
@@ -22,7 +24,7 @@ public class RoleServiceImpl implements RoleService {
         this.modelMapper = modelMapper;
     }
 
-    @Override
+    /*@Override
     public void seedRolesInDb() {
         if (roleRepository.count() == 0) {
             roleRepository.save(new Role("ROLE_CUSTOMER"));
@@ -31,8 +33,11 @@ public class RoleServiceImpl implements RoleService {
             roleRepository.save(new Role("ROLE_SUPPORT"));
             roleRepository.save(new Role("ROLE_ROOT"));
         }
-    }
+    }*/
 
+    /**
+     * @see RoleService#findAllRoles()
+     */
     @Override
     public Set<RoleServiceModel> findAllRoles() {
         return  roleRepository.findAll()
@@ -41,6 +46,9 @@ public class RoleServiceImpl implements RoleService {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * @see RoleService#findByAuthority(String)
+     */
     @Override
     public RoleServiceModel findByAuthority(String authority) {
         return this.modelMapper.map(this.roleRepository.findByAuthority(authority), RoleServiceModel.class);
